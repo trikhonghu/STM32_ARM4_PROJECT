@@ -1,0 +1,152 @@
+12:52:50 **** Build of configuration Debug for project Bai6_ADC_PWM ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/fsm.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/fsm.d" -MT"Core/Src/fsm.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/fsm.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/fsm.c: In function 'fsm_machine':
+../Core/Src/fsm.c:22:26: warning: pointer targets in passing argument 1 of 'uart_Rs232SendString' differ in signedness [-Wpointer-sign]
+   22 |     uart_Rs232SendString("Wattage : ");
+      |                          ^~~~~~~~~~~~
+      |                          |
+      |                          char *
+In file included from ../Core/Inc/fsm.h:16,
+                 from ../Core/Src/fsm.c:7:
+../Core/Inc/uart.h:25:36: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   25 | void uart_Rs232SendString(uint8_t* str);
+      |                           ~~~~~~~~~^~~
+../Core/Src/fsm.c:24:26: warning: pointer targets in passing argument 1 of 'uart_Rs232SendString' differ in signedness [-Wpointer-sign]
+   24 |     uart_Rs232SendString(".");
+      |                          ^~~
+      |                          |
+      |                          char *
+In file included from ../Core/Inc/fsm.h:16,
+                 from ../Core/Src/fsm.c:7:
+../Core/Inc/uart.h:25:36: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   25 | void uart_Rs232SendString(uint8_t* str);
+      |                           ~~~~~~~~~^~~
+../Core/Src/fsm.c:26:26: warning: pointer targets in passing argument 1 of 'uart_Rs232SendString' differ in signedness [-Wpointer-sign]
+   26 |     uart_Rs232SendString("\n");
+      |                          ^~~~
+      |                          |
+      |                          char *
+In file included from ../Core/Inc/fsm.h:16,
+                 from ../Core/Src/fsm.c:7:
+../Core/Inc/uart.h:25:36: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   25 | void uart_Rs232SendString(uint8_t* str);
+      |                           ~~~~~~~~~^~~
+../Core/Src/fsm.c:27:26: warning: pointer targets in passing argument 1 of 'uart_Rs232SendString' differ in signedness [-Wpointer-sign]
+   27 |     uart_Rs232SendString("Light : ");
+      |                          ^~~~~~~~~~
+      |                          |
+      |                          char *
+In file included from ../Core/Inc/fsm.h:16,
+                 from ../Core/Src/fsm.c:7:
+../Core/Inc/uart.h:25:36: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   25 | void uart_Rs232SendString(uint8_t* str);
+      |                           ~~~~~~~~~^~~
+../Core/Src/fsm.c:29:27: warning: pointer targets in passing argument 1 of 'uart_Rs232SendString' differ in signedness [-Wpointer-sign]
+   29 |      uart_Rs232SendString("Strong\n");
+      |                           ^~~~~~~~~~
+      |                           |
+      |                           char *
+In file included from ../Core/Inc/fsm.h:16,
+                 from ../Core/Src/fsm.c:7:
+../Core/Inc/uart.h:25:36: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   25 | void uart_Rs232SendString(uint8_t* str);
+      |                           ~~~~~~~~~^~~
+../Core/Src/fsm.c:31:27: warning: pointer targets in passing argument 1 of 'uart_Rs232SendString' differ in signedness [-Wpointer-sign]
+   31 |      uart_Rs232SendString("Weak\n");
+      |                           ^~~~~~~~
+      |                           |
+      |                           char *
+In file included from ../Core/Inc/fsm.h:16,
+                 from ../Core/Src/fsm.c:7:
+../Core/Inc/uart.h:25:36: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   25 | void uart_Rs232SendString(uint8_t* str);
+      |                           ~~~~~~~~~^~~
+../Core/Src/fsm.c:33:26: warning: pointer targets in passing argument 1 of 'uart_Rs232SendString' differ in signedness [-Wpointer-sign]
+   33 |     uart_Rs232SendString("Humidity :");
+      |                          ^~~~~~~~~~~~
+      |                          |
+      |                          char *
+In file included from ../Core/Inc/fsm.h:16,
+                 from ../Core/Src/fsm.c:7:
+../Core/Inc/uart.h:25:36: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   25 | void uart_Rs232SendString(uint8_t* str);
+      |                           ~~~~~~~~~^~~
+In file included from ../Core/Src/main.c:36:
+../Core/Inc/lcd.h:83:13: warning: 'LCD_WR_DATA' declared 'static' but never defined [-Wunused-function]
+   83 | static void LCD_WR_DATA(uint16_t data);
+      |             ^~~~~~~~~~~
+../Core/Inc/lcd.h:84:17: warning: 'LCD_RD_DATA' declared 'static' but never defined [-Wunused-function]
+   84 | static uint16_t LCD_RD_DATA(void);
+      |                 ^~~~~~~~~~~
+../Core/Src/fsm.c:35:26: warning: pointer targets in passing argument 1 of 'uart_Rs232SendString' differ in signedness [-Wpointer-sign]
+   35 |     uart_Rs232SendString("%");
+      |                          ^~~
+      |                          |
+      |                          char *
+In file included from ../Core/Inc/fsm.h:16,
+                 from ../Core/Src/fsm.c:7:
+../Core/Inc/uart.h:25:36: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   25 | void uart_Rs232SendString(uint8_t* str);
+      |                           ~~~~~~~~~^~~
+../Core/Src/fsm.c:36:26: warning: pointer targets in passing argument 1 of 'uart_Rs232SendString' differ in signedness [-Wpointer-sign]
+   36 |     uart_Rs232SendString("\n");
+      |                          ^~~~
+      |                          |
+      |                          char *
+In file included from ../Core/Inc/fsm.h:16,
+                 from ../Core/Src/fsm.c:7:
+../Core/Inc/uart.h:25:36: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   25 | void uart_Rs232SendString(uint8_t* str);
+      |                           ~~~~~~~~~^~~
+../Core/Src/fsm.c:37:26: warning: pointer targets in passing argument 1 of 'uart_Rs232SendString' differ in signedness [-Wpointer-sign]
+   37 |     uart_Rs232SendString("Temperature : ");
+      |                          ^~~~~~~~~~~~~~~~
+      |                          |
+      |                          char *
+In file included from ../Core/Inc/fsm.h:16,
+                 from ../Core/Src/fsm.c:7:
+../Core/Inc/uart.h:25:36: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   25 | void uart_Rs232SendString(uint8_t* str);
+      |                           ~~~~~~~~~^~~
+../Core/Src/fsm.c:39:26: warning: pointer targets in passing argument 1 of 'uart_Rs232SendString' differ in signedness [-Wpointer-sign]
+   39 |     uart_Rs232SendString("\n\n");
+      |                          ^~~~~~
+      |                          |
+      |                          char *
+In file included from ../Core/Inc/fsm.h:16,
+                 from ../Core/Src/fsm.c:7:
+../Core/Inc/uart.h:25:36: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   25 | void uart_Rs232SendString(uint8_t* str);
+      |                           ~~~~~~~~~^~~
+../Core/Src/fsm.c:55:26: warning: pointer targets in passing argument 1 of 'uart_Rs232SendString' differ in signedness [-Wpointer-sign]
+   55 |     uart_Rs232SendString("Humidity is higher than 70%\n\n");
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                          |
+      |                          char *
+In file included from ../Core/Inc/fsm.h:16,
+                 from ../Core/Src/fsm.c:7:
+../Core/Inc/uart.h:25:36: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   25 | void uart_Rs232SendString(uint8_t* str);
+      |                           ~~~~~~~~~^~~
+arm-none-eabi-gcc -o "Bai6_ADC_PWM.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Desktop\BKIT_ARM4_Bai6_ADC_PWM-main\BKIT_ARM4_Bai6_ADC_PWM-main\Bai6_ADC_PWM\STM32F407ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Bai6_ADC_PWM.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Bai6_ADC_PWM.elf
+ 
+arm-none-eabi-size   Bai6_ADC_PWM.elf 
+arm-none-eabi-objdump -h -S  Bai6_ADC_PWM.elf  > "Bai6_ADC_PWM.list"
+arm-none-eabi-objcopy  -O ihex  Bai6_ADC_PWM.elf  "Bai6_ADC_PWM.hex"
+   text	   data	    bss	    dec	    hex	filename
+  52888	    128	   2744	  55760	   d9d0	Bai6_ADC_PWM.elf
+arm-none-eabi-objcopy  -O binary  Bai6_ADC_PWM.elf  "Bai6_ADC_PWM.bin"
+Finished building: default.size.stdout
+ 
+Finished building: Bai6_ADC_PWM.hex
+Finished building: Bai6_ADC_PWM.bin
+ 
+ 
+Finished building: Bai6_ADC_PWM.list
+ 
+
+12:52:51 Build Finished. 0 errors, 14 warnings. (took 1s.169ms)
+

@@ -1,0 +1,145 @@
+/*
+ * fsm.c
+ *
+ *  Created on: Nov 28, 2023
+ *      Author: Admin
+ */
+
+
+#include "fsm.h"
+
+int status = INIT;
+int ID = 0;
+int mode = EASY;
+int speed = 1000;
+int check_sent;
+
+void fsm_mode(){
+	switch(mode){
+	case EASY:
+		speed = 1000;
+		break;
+	case AVERAGE:
+		speed = 100;
+		break;
+	case HARD:
+		speed = 10;
+		break;
+	}
+}
+
+void enter_ID(){
+	if(ID > 9999)
+		ID = ID % 10;
+	if(button_count[0] == 1)
+		ID = ID*10+1;
+	if(button_count[1] == 1)
+		ID = ID*10+2;
+	if(button_count[2] == 1)
+		ID = ID*10+3;
+	if(button_count[4] == 1)
+		ID = ID*10+4;
+	if(button_count[5] == 1)
+		ID = ID*10+5;
+	if(button_count[6] == 1)
+		ID = ID*10+6;
+	if(button_count[8] == 1)
+		ID = ID*10+7;
+	if(button_count[9] == 1)
+		ID = ID*10+8;
+	if(button_count[10] == 1)
+		ID = ID*10+9;
+	if(button_count[13] == 1)
+		ID = ID*10;
+
+}
+
+void change_mode(){
+	if(button_count[12] == 1)
+		status = INIT;
+	lcd_Clear(BLACK);
+	lcd_ShowStr(0, 10, "1. EASY", WHITE, BLACK, 16, 0);
+	lcd_ShowStr(0, 10, "2. MEDIUM", WHITE, BLACK, 16, 0);
+	lcd_ShowStr(0, 10, "3. HARD", WHITE, BLACK, 16, 0);
+}
+
+void fsm_machine(){
+	switch (status) {
+	case CHANGE_MODE:
+		change_mode();
+		break;
+	case INIT:
+		screen_init();
+		enter_ID();
+
+		if(button_count[14] == 1){
+			status = CHANGE_MODE;
+		}
+
+		if(isButtonStart()){
+			status = PLAY;
+			lcd_Clear(BLACK);
+			re_init();
+			screen_play();
+			fsm_mode();
+		}
+		break;
+	case PLAY:
+		if(isButtonUp()){
+			sw_up = 0;
+			sw_down = 1;
+			sw_left = 1;
+			sw_right = 1;
+			flag_timer3 = 1;
+		}
+		if(isButtonDown()){
+			sw_up = 1;
+			sw_down = 0;
+			sw_left = 1;
+			sw_right = 1;
+			flag_timer3 = 1;
+		}
+		if(isButtonLeft()){
+			sw_up = 1;
+			sw_down = 1;
+			sw_left = 0;
+			sw_right = 1;
+			flag_timer3 = 1;
+		}
+		if(isButtonRight()){
+			sw_up = 1;
+			sw_down = 1;
+			sw_left = 1;
+			sw_right = 0;
+			flag_timer3 = 1;
+		}
+		wait_check();
+		if(flag_timer3 == 1){
+			//wait_check();
+			setTimer3(speed);
+			update_grid();
+			check_food();
+			move_snake();
+			check_collision();
+			screen_score();
+		}
+		if(lose == 1){
+			status = GAME_OVER;
+			lcd_Clear(BLACK);
+			lose = 0;
+			screen_game_over();
+		}
+		break;
+	case GAME_OVER:
+		if(isButtonRestart()){
+			status = INIT;
+			lcd_Clear(BLACK);
+			re_init();
+		}
+		break;
+	default:
+		break;
+	}
+}
+
+

@@ -1,0 +1,40 @@
+/*
+ * screen.c
+ *
+ *  Created on: Nov 28, 2023
+ *      Author: Admin
+ */
+
+#include "screen.h"
+
+void screen_init(){
+	lcd_ShowStr(60,110,"SNAKE GAME",WHITE,WHITE,24,1);
+	lcd_ShowStr(40,150,"Player ID:",WHITE,BLACK,16,0);
+	lcd_ShowIntNum(120, 150, ID, 4, WHITE, BLACK, 16);
+	lcd_Fill(50, 200, 190, 300, GREEN);
+	lcd_ShowStr(90,235,"START",BLACK,BLACK,24,1);
+}
+
+void screen_play(){
+	lcd_Fill(0, 0, 240, 200, WHITE);
+	lcd_Fill(90, 210, 150, 250, BLUE);//UP
+	lcd_Fill(90, 260, 150, 300, BLUE);//DOWN
+	lcd_Fill(20, 260, 80, 300, BLUE);//LEFT
+	lcd_Fill(160, 260, 220, 300, BLUE);//RIGHT
+}
+
+void screen_score(){
+	lcd_ShowStr(0, 205, "Score: ", WHITE, WHITE, 24, 1);
+	lcd_ShowIntNum(0, 230, score, 1, WHITE, BLACK, 24);
+}
+
+void screen_game_over(){
+	lcd_ShowStr(70,100,"GAME OVER",WHITE,WHITE,24,1);
+	lcd_ShowStr(80, 200, "Score: ", WHITE, WHITE, 24, 1);
+	lcd_ShowStr(40,150,"Player ID:",WHITE,BLACK,16,0);
+	lcd_ShowIntNum(145, 150, ID, 4, WHITE, BLACK, 16);
+	lcd_ShowIntNum(150, 200, score, 4, WHITE, BLACK, 24);
+	lcd_Fill(50, 250, 190, 300, GREEN);
+	lcd_ShowStr(80,260,"RESTART",BLACK,BLACK,24,1);
+}
+

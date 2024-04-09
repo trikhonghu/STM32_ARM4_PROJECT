@@ -1,0 +1,39 @@
+/*
+ * fsm.h
+ *
+ *  Created on: Nov 28, 2023
+ *      Author: Admin
+ */
+
+#ifndef INC_FSM_H_
+#define INC_FSM_H_
+
+#include "main.h"
+#include "snake.h"
+#include "screen.h"
+#include "touch_screen.h"
+#include "software_timer.h"
+#include "uart.h"
+#include "button.h"
+
+#define INIT	0
+#define PLAY	1
+#define GAME_OVER	2
+#define CHANGE_MODE	3
+
+#define EASY 0
+#define AVERAGE 1
+#define HARD 2
+
+extern int status;
+extern int mode;
+extern int ID;
+extern int speed;
+extern int count;
+
+void fsm_machine();
+void fsm_mode();
+void isInput();
+void test_Adc();
+
+#endif /* INC_FSM_H_ */
