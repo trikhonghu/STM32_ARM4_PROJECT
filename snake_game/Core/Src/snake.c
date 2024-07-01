@@ -229,14 +229,36 @@ void wait_check(void){
 	}
 }
 
+//void check_food(void){
+//	if(draw_grid[pos_head[0]][pos_head[1]]==1){
+//		score++;
+//		size_of_snake++;
+//		snake_pos[0][size_of_snake-1]=pos_head[0];
+//		snake_pos[1][size_of_snake-1]=pos_head[1];
+//		spawn_food();
+//	}
+//}
+
 void check_food(void){
-	if(draw_grid[pos_head[0]][pos_head[1]]==1){
-		score++;
-		size_of_snake++;
-		snake_pos[0][size_of_snake-1]=pos_head[0];
-		snake_pos[1][size_of_snake-1]=pos_head[1];
-		spawn_food();
-	}
+    if(draw_grid[pos_head[0]][pos_head[1]]==1){
+        score++;
+        size_of_snake++;
+
+        for (int i = size_of_snake - 1; i > 0; i--) {
+            snake_pos[0][i] = snake_pos[0][i - 1];
+            snake_pos[1][i] = snake_pos[1][i - 1];
+        }
+
+        snake_pos[0][0] = pos_head[0];
+        snake_pos[1][0] = pos_head[1];
+
+        for (int i = 0; i < size_of_snake; i++) {
+            draw_grid[snake_pos[0][i]][snake_pos[1][i]] = 2;
+        }
+
+        spawn_food();
+    }
 }
+
 
 
