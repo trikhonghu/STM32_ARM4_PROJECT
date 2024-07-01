@@ -23,6 +23,7 @@
 #define GAME_OVER	2
 #define CHANGE_MODE	3
 #define CHANGE_SPEED 4
+#define DISPLAY_LEADERBOARD 5
 
 #define NORMAL 0
 #define WALL 1

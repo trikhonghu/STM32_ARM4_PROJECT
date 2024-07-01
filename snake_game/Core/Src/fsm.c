@@ -114,6 +114,8 @@ void enter_ID(){//nhap id nguoi choi
 void change_mode(){// doi che do choi
 	if(button_count[12] == 1){
 		lcd_Clear(BLACK);
+		lcd_Fill(50, 200, 190, 300, GREEN);
+		lcd_ShowStr(90,235,"START",BLACK,BLACK,24,1);
 		status = INIT;
 		return;
 	}
@@ -127,21 +129,29 @@ void change_mode(){// doi che do choi
 		mode = NORMAL;
 		lcd_Clear(BLACK);
 		status = INIT;
+		lcd_Fill(50, 200, 190, 300, GREEN);
+		lcd_ShowStr(90,235,"START",BLACK,BLACK,24,1);
 	}
 	if(button_count[1] == 1){
 		mode = WALL;
 		lcd_Clear(BLACK);
 		status = INIT;
+		lcd_Fill(50, 200, 190, 300, GREEN);
+		lcd_ShowStr(90,235,"START",BLACK,BLACK,24,1);
 	}
 	if(button_count[2] == 1){
 		mode = WALLS;
 		lcd_Clear(BLACK);
 		status = INIT;
+		lcd_Fill(50, 200, 190, 300, GREEN);
+		lcd_ShowStr(90,235,"START",BLACK,BLACK,24,1);
 	}
 	if(button_count[4] == 1){
 		mode = TIMER;
 		lcd_Clear(BLACK);
 		status = INIT;
+		lcd_Fill(50, 200, 190, 300, GREEN);
+		lcd_ShowStr(90,235,"START",BLACK,BLACK,24,1);
 	}
 }
 
@@ -149,6 +159,8 @@ void change_speed(){// doi toc do ran
 	if(button_count[12] == 1){
 		lcd_Clear(BLACK);
 		status = INIT;
+		lcd_Fill(50, 200, 190, 300, GREEN);
+		lcd_ShowStr(90,235,"START",BLACK,BLACK,24,1);
 		return;
 	}
 	lcd_ShowStr(0, 10, "1. EASY", WHITE, BLACK, 16, 0);
@@ -160,16 +172,22 @@ void change_speed(){// doi toc do ran
 		speed = 1000;
 		lcd_Clear(BLACK);
 		status = INIT;
+		lcd_Fill(50, 200, 190, 300, GREEN);
+		lcd_ShowStr(90,235,"START",BLACK,BLACK,24,1);
 	}
 	if(button_count[1] == 1){
 		speed = 500;
 		lcd_Clear(BLACK);
 		status = INIT;
+		lcd_Fill(50, 200, 190, 300, GREEN);
+		lcd_ShowStr(90,235,"START",BLACK,BLACK,24,1);
 	}
 	if(button_count[2] == 1){
 		speed = 100;
 		lcd_Clear(BLACK);
 		status = INIT;
+		lcd_Fill(50, 200, 190, 300, GREEN);
+		lcd_ShowStr(90,235,"START",BLACK,BLACK,24,1);
 	}
 }
 
@@ -195,10 +213,28 @@ void displayLeaderBoard(struct player *head){
 			break;
 	}
 	uart_EspSendString("/");
+
+	temp = head;
+	count_leaderboard = 1;
+	lcd_ShowStr(10, 10, "ID", WHITE, BLACK, 24, 0);
+	lcd_ShowStr(50, 10, "SCORE", WHITE, BLACK, 24, 0);
+	lcd_ShowStr(120, 10, "MODE", WHITE, BLACK, 24, 0);
+	while(temp != NULL && count_leaderboard < 11){
+
+	}
 }
 
 void fsm_machine(){
 	switch (status) {
+	case DISPLAY_LEADERBOARD:
+//		displayLeaderBoard(leaderboard);
+		if(button_count[12] == 1){
+			lcd_Clear(BLACK);
+			lcd_Fill(50, 200, 190, 300, GREEN);
+			lcd_ShowStr(90,235,"START",BLACK,BLACK,24,1);
+			status = INIT;
+		}
+		break;
 	case CHANGE_MODE:
 		change_mode();
 		break;
@@ -219,7 +255,9 @@ void fsm_machine(){
 			status = CHANGE_SPEED;
 		}
 		if(button_count[15] == 1){
+			lcd_Clear(BLACK);
 			displayLeaderBoard(leaderboard);
+			status = DISPLAY_LEADERBOARD;
 		}
 
 		if(isButtonStart()){
@@ -312,6 +350,8 @@ void fsm_machine(){
 			uart_EspSendString(res);
 			send_flag =0;
 			lcd_Clear(BLACK);
+			lcd_Fill(50, 250, 190, 300, GREEN);
+			lcd_ShowStr(80,260,"RESTART",BLACK,BLACK,24,1);
 			lose = 0;
 		}
 		break;
@@ -329,7 +369,9 @@ void fsm_machine(){
 		}
 
 		if(button_count[15] == 1){
+			lcd_Clear(BLACK);
 			displayLeaderBoard(leaderboard);
+			status = DISPLAY_LEADERBOARD;
 		}
 
 		if(isButtonRestart()){

@@ -131,7 +131,6 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
  //touch_Adjust();
- lcd_Clear(BLACK);
  setTimer3(100);
  setTimer5(10);
  setTimer7(10);
@@ -162,8 +161,8 @@ int main(void)
 	  }else{
 		  HAL_GPIO_WritePin(OUTPUT_Y0_GPIO_Port, OUTPUT_Y0_Pin, RESET);
 	  }
-	  if(status == INIT || status == GAME_OVER)
-		  test_Adc();
+//	  if(status == INIT || status == GAME_OVER)
+//		  test_Adc();
 	  //touchProcess();
 	  fsm_machine();
 	  test_LedDebug();
@@ -230,6 +229,10 @@ void system_init(){
 	  touch_init();
 	  setTimer2(50);
 	  uart_init_esp();
+
+	  lcd_Clear(BLACK);
+	  lcd_Fill(50, 200, 190, 300, GREEN);
+	  lcd_ShowStr(90,235,"START",BLACK,BLACK,24,1);
 }
 
 uint8_t count_adc = 0;
