@@ -194,33 +194,44 @@ void change_speed(){// doi toc do ran
 void displayLeaderBoard(struct player *head){
 	struct player *temp = head;
 	int count_leaderboard = 1;
-	uart_EspSendString("Leaderboard :\n");
-	while(temp != NULL){
-		if(count_leaderboard < 7){
-		char res[100];
+//	uart_EspSendString("Leaderboard :\n");
+//	while(temp != NULL){
+//		if(count_leaderboard < 7){
+//		char res[100];
+//		if(temp->player_mode == NORMAL)
+//			sprintf(res, "#%d ID: %d, score: %d, mode : NORMAL\n", count_leaderboard, temp->player_ID, temp->player_score);
+//		else if(temp->player_mode == WALL)
+//			sprintf(res, "#%d ID: %d, score: %d, mode : WALL\n", count_leaderboard, temp->player_ID, temp->player_score);
+//		else if(temp->player_mode == WALLS)
+//			sprintf(res, "#%d ID: %d, score: %d, mode : WALLS\n", count_leaderboard, temp->player_ID, temp->player_score);
+//		else
+//			sprintf(res, "#%d ID: %d, score: %d, mode : TIMER\n", count_leaderboard, temp->player_ID, temp->player_score);
+//		uart_EspSendString(res);
+//		count_leaderboard++;
+//		temp = temp -> next;
+//		}else
+//			break;
+//	}
+//	uart_EspSendString("/");
+//
+//	temp = head;
+//	count_leaderboard = 1;
+	lcd_ShowStr(15, 10, "ID", WHITE, BLACK, 24, 0);
+	lcd_ShowStr(80, 10, "SCORE", WHITE, BLACK, 24, 0);
+	lcd_ShowStr(170, 10, "MODE", WHITE, BLACK, 24, 0);
+	while(temp != NULL && 50+(count_leaderboard-1)*20 < 300){
+		lcd_ShowIntNum(15, 50+(count_leaderboard-1)*20, temp->player_ID, 4, WHITE, BLACK, 16);
+		lcd_ShowIntNum(83, 50+(count_leaderboard-1)*20, temp->player_score, 4, WHITE, BLACK, 16);
 		if(temp->player_mode == NORMAL)
-			sprintf(res, "#%d ID: %d, score: %d, mode : NORMAL\n", count_leaderboard, temp->player_ID, temp->player_score);
+			lcd_ShowStr(170, 50+(count_leaderboard-1)*20, "NORMAL", WHITE, BLACK, 16, 0);
 		else if(temp->player_mode == WALL)
-			sprintf(res, "#%d ID: %d, score: %d, mode : WALL\n", count_leaderboard, temp->player_ID, temp->player_score);
+			lcd_ShowStr(170, 50+(count_leaderboard-1)*20, "WALL", WHITE, BLACK, 16, 0);
 		else if(temp->player_mode == WALLS)
-			sprintf(res, "#%d ID: %d, score: %d, mode : WALLS\n", count_leaderboard, temp->player_ID, temp->player_score);
+			lcd_ShowStr(170, 50+(count_leaderboard-1)*20, "WALLS", WHITE, BLACK, 16, 0);
 		else
-			sprintf(res, "#%d ID: %d, score: %d, mode : TIMER\n", count_leaderboard, temp->player_ID, temp->player_score);
-		uart_EspSendString(res);
+			lcd_ShowStr(170, 50+(count_leaderboard-1)*20, "TIMER", WHITE, BLACK, 16, 0);
+		temp=temp->next;
 		count_leaderboard++;
-		temp = temp -> next;
-		}else
-			break;
-	}
-	uart_EspSendString("/");
-
-	temp = head;
-	count_leaderboard = 1;
-	lcd_ShowStr(10, 10, "ID", WHITE, BLACK, 24, 0);
-	lcd_ShowStr(50, 10, "SCORE", WHITE, BLACK, 24, 0);
-	lcd_ShowStr(120, 10, "MODE", WHITE, BLACK, 24, 0);
-	while(temp != NULL && count_leaderboard < 11){
-
 	}
 }
 

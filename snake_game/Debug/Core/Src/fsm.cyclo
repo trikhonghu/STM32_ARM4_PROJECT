@@ -4,5 +4,5 @@
 ../Core/Src/fsm.c:89:6:enter_ID	12
 ../Core/Src/fsm.c:114:6:change_mode	6
 ../Core/Src/fsm.c:158:6:change_speed	5
-../Core/Src/fsm.c:194:6:displayLeaderBoard	8
-../Core/Src/fsm.c:227:6:fsm_machine	28
+../Core/Src/fsm.c:194:6:displayLeaderBoard	6
+../Core/Src/fsm.c:238:6:fsm_machine	28
